@@ -9,7 +9,6 @@ namespace FoodStore.Models
         [Required]
         public string CategoryName { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
-
         public List<Food>? Foods { get; set; }
     }
 }
