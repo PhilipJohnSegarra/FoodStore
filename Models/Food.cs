@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
 namespace FoodStore.Models
@@ -11,8 +12,8 @@ namespace FoodStore.Models
         [StringLength(50)]
         public string FoodName { get; set; } = string.Empty;
         public string FoodDescription { get; set; } = String.Empty;
-        [AllowNull]
-        public string ImagePath { get; set; }
+        [BindNever]
+        public byte[]? Image { get; set; }
         [Required]
         public int FoodCatId { get; set; }
 

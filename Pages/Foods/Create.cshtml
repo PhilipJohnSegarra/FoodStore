@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Food.FoodName" class="control-label"></label>
@@ -24,9 +24,9 @@
                 <span asp-validation-for="Food.FoodDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Food.ImagePath" class="control-label"></label>
-                <input asp-for="Food.ImagePath" class="form-control" />
-                <span asp-validation-for="Food.ImagePath" class="text-danger"></span>
+                <label class="control-label">Image</label>
+                <input type="file" name="imageFile" class="form-control" />
+                <span asp-validation-for="Food.Image" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Food.FoodCatId" class="control-label"></label>

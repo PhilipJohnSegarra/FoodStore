@@ -28,6 +28,9 @@ namespace FoodStore.Pages.Foods
         [BindProperty]
         public Food Food { get; set; } = default!;
 
+        [BindProperty]
+        public IFormFile? imageFile { get; set; }
+
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
@@ -36,10 +39,25 @@ namespace FoodStore.Pages.Foods
                 return Page();
             }
 
-            _context.Food.Add(Food);
-            await _context.SaveChangesAsync();
+            try
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    imageFile.CopyTo(ms);
+                    Food.Image = ms.ToArray();
 
-            return RedirectToPage("./Index");
+                    
+                }
+                _context.Food.Add(Food);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+                
         }
     }
 }
