@@ -38,8 +38,15 @@
                 @Html.DisplayFor(modelItem => item.FoodDescription)
             </td>
             <td>
-                 <img style="width:auto;height:100px;" src="data:image/jpeg;base64,@Convert.ToBase64String(item.Image)" alt="Food Image" />
-            </td>
+                    @if(item.Image != null)
+                    {
+                        <img style="width:auto;height:100px;" src="data:image/jpeg;base64,@Convert.ToBase64String(item.Image)" alt="Food Image" />
+                    }
+                    else
+                    {
+                        <h5>Not Available</h5>
+                    }
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.CategoryName)
             </td>
@@ -53,12 +60,11 @@
     </tbody>
 </table>
 
-<div style="display:flex;flex-direction:row;">
+<div style="display:flex;flex-direction:row;flex-wrap:wrap;justify-content:center;">
     @foreach (var item in Model.Food)
     {
-
         <div class="card" style="width: 23rem;">
-            <img style="width:auto;height:100%;object-fit:cover;object-position:center;max-height:300px;" src="data:image/jpeg;base64,@Convert.ToBase64String(item.Image)" class="card-img-top" alt="...">
+            <img style="width:auto;height:100%;object-fit:contain;object-position:center;max-height:300px;" src="data:image/jpeg;base64,@Convert.ToBase64String(item.Image)" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(modelItem => item.FoodName)</h5>
                 <p class="card-text">@Html.DisplayFor(modelItem => item.FoodDescription)</p>

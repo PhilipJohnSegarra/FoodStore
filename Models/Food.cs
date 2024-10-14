@@ -13,6 +13,7 @@ namespace FoodStore.Models
         public string FoodName { get; set; } = string.Empty;
         public string FoodDescription { get; set; } = String.Empty;
         [BindNever]
+        [AllowNull]
         public byte[]? Image { get; set; }
         [Required]
         public int FoodCatId { get; set; }

@@ -23,6 +23,9 @@ namespace FoodStore.Pages.Foods
         [BindProperty]
         public Food Food { get; set; } = default!;
 
+        //[BindProperty]
+        //public IFormFile? imageEditFile { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -42,17 +45,27 @@ namespace FoodStore.Pages.Foods
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more information, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(IFormFile? imageEditFile)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Attach(Food).State = EntityState.Modified;
+            if (imageEditFile != null)
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    imageEditFile.CopyTo(ms);
+                    Food.Image = ms.ToArray();
 
+                    _context.Attach(Food).State = EntityState.Modified;
+                }
+            }
+     
             try
             {
+                
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
