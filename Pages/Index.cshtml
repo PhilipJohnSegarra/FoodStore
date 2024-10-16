@@ -4,7 +4,25 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="row" style="height:80vh;">
+        <div class="col col-lg-6 d-flex flex-column justify-content-center">
+            <h2 style="font-family:Pacifico;font-size:50px;color:orangered;margin:0 0 2rem 0;">Manage with Ease, Serve with Excellence</h2>
+            <p class="" style="margin:0 0 8rem 0;font-size:18px;">This focuses on the administrative side, emphasizing efficient management and service quality. How does that sound?</p>
+            <div class="container-fluid p-0">
+                <div class="row g-0">
+                    <div class="col-6">
+                        <a class="btn text-light align-content-center rounded-0" asp-page="/Foods/index" style="background-color:#00712D;width:100%;height:50px;"> Foods</a>
+                    </div>
+                    <div class="col-6">
+                        <a class="btn align-content-center rounded-0" asp-page="/FoodCategories/index" style="border:solid 1px #00712D;width:100%;height:50px;color:#00712D;"> Foods Categories</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-lg-6 d-flex flex-column justify-content-center">
+            <img style="margin:auto 0 auto 0;width:100%;" src="~/plate.png"/>
+        </div>
+    </div>
 </div>
+
