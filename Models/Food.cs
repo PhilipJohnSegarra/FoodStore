@@ -20,7 +20,7 @@ namespace FoodStore.Models
         [AllowNull]
         public double Price { get; set; }
         [AllowNull]
-        public string Ingredients { get; set; }
+        public string Ingredients { get; set; } = string.Empty;
 
         public FoodCategory? Category { get; set; }
     }

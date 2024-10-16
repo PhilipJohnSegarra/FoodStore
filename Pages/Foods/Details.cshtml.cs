@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using FoodStore.Data;
 using FoodStore.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace FoodStore.Pages.Foods
 {
@@ -28,6 +29,8 @@ namespace FoodStore.Pages.Foods
                 return NotFound();
             }
 
+            
+
             var food = await _context.Food.FirstOrDefaultAsync(m => m.foodId == id);
             if (food == null)
             {
@@ -36,6 +39,7 @@ namespace FoodStore.Pages.Foods
             else
             {
                 Food = food;
+                ViewData["FoodCatName"] = _context.FoodCategory.Where(id => id.FoodCatId == Food.FoodCatId).ToList().First().CategoryName;
             }
             return Page();
         }

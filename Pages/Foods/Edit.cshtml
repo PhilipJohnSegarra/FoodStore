@@ -5,54 +5,65 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
 
-<h4>Food</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Food.foodId" />
-            <div class="form-group">
-                <label asp-for="Food.FoodName" class="control-label"></label>
-                <input asp-for="Food.FoodName" class="form-control" />
-                <span asp-validation-for="Food.FoodName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Food.FoodDescription" class="control-label"></label>
-                <input asp-for="Food.FoodDescription" class="form-control" />
-                <span asp-validation-for="Food.FoodDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Image</label>
-                <input type="file" name="imageEditFile" class="form-control" id="imageInput" />
-                <span asp-validation-for="Food.Image" class="text-danger"></span>
-                <div class="mt-2">
-                    <img id="imagePreview" src="#" alt="Image Preview" style="display:none; max-width: 100%; height: auto;" />
+<div class="container mt-5">
+    <h4>Edit Food</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Food.foodId" />
+                <div class="form-group">
+                    <label asp-for="Food.FoodName" class="control-label"></label>
+                    <input asp-for="Food.FoodName" class="form-control" />
+                    <span asp-validation-for="Food.FoodName" class="text-danger"></span>
                 </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Food.FoodCatId" class="control-label"></label>
-                <select asp-for="Food.FoodCatId" class="form-control" asp-items="ViewBag.FoodCatId"></select>
-                <span asp-validation-for="Food.FoodCatId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
+                <div class="form-group">
+                    <label asp-for="Food.FoodDescription" class="control-label"></label>
+                    <input asp-for="Food.FoodDescription" class="form-control" />
+                    <span asp-validation-for="Food.FoodDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Image</label>
+                    <input type="file" name="imageEditFile" class="form-control" id="imageEditFile" />
+                    <span asp-validation-for="Food.Image" class="text-danger"></span>
 
-<div>
-    <a asp-page="./Index">Back to List</a>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Food.Ingredients" class="control-label"></label>
+                    <textarea asp-for="Food.Ingredients" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Food.FoodCatId" class="control-label"></label>
+                    <select asp-for="Food.FoodCatId" class="form-control" asp-items="ViewBag.FoodCatId"></select>
+                    <span asp-validation-for="Food.FoodCatId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Food.Price" class="control-label"></label>
+                    <input type="number" asp-for="Food.Price" class="form-control"></input>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <a asp-page="./Index">Back to List</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8 d-flex flex-column justify-content-center align-items-center">
+            <div class="">
+                <img id="imagePreview" src="#" alt="Image Preview" style="display:none; max-width: 100%; height: auto;" />
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
     <script>
-        document.getElementById("imageInput").addEventListener("change", function (event) {
+        document.getElementById("imageEditFile").addEventListener("change", function (event) {
             var input = event.target;
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
