@@ -33,6 +33,14 @@
                 <select asp-for="Food.FoodCatId" class ="form-control" asp-items="ViewBag.FoodCatId"></select>
             </div>
             <div class="form-group">
+                <label asp-for="Food.Ingredients" class="control-label"></label>
+                <textarea asp-for="Food.Ingredients"></textarea>
+            </div>
+            <div class="form-group">
+                <label asp-for="Food.Price" class="control-label"></label>
+                <input type="number" asp-for="Food.Price"></input>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

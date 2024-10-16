@@ -17,6 +17,10 @@ namespace FoodStore.Models
         public byte[]? Image { get; set; }
         [Required]
         public int FoodCatId { get; set; }
+        [AllowNull]
+        public double Price { get; set; }
+        [AllowNull]
+        public string Ingredients { get; set; }
 
         public FoodCategory? Category { get; set; }
     }

@@ -57,7 +57,7 @@
     </tbody>
 </table> *@
 
-<div class="container pt-5">
+<div class="container pt-5 pb-5 ps-0 pe-0">
     <div class="container-fluid p-0 d-flex flex-row justify-content-between">
         <h3 style="color:#00712D">All Menu</h3>
         <p class="">
@@ -65,16 +65,27 @@
         </p>
     </div>
     <hr />
-    <div class="container">
+    <div class="container-fluid p-0">
         <div class="row">
             @foreach (var item in Model.Food)
             {
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="card">
-                        <img style="width:100%;height:500px;object-fit:contain;object-position:center;max-height:300px;" src="data:image/jpeg;base64,@Convert.ToBase64String(item.Image)" class="card-img-top" alt="...">
+                <div class="col-lg-4 col-md-6 col-sm-12 pb-4">
+                    <div class="card border-top-1 border-end-1 border-start-0 border-bottom-0 shadow position-relative">
+                        <div style="position:absolute;">
+                            <img src="~/pricetag.png" style="width:200px;height:200px;position:absolute;transform:rotate(120deg);top:-63px;left:-20px;" />
+                            <h6 style="position:absolute;top:43px;transform:rotate(-15deg);color:yellow;">&#x20B1;@item.Price.ToString("N2")</h6>
+                        </div>
+                        <div class="container-fluid p-0 d-flex flex-row justify-content-end">
+                            <a class="btn" style="" asp-page="./Edit" asp-route-id="@item.foodId"><i style="color:#00712D" class="bi bi-pencil-square"></i></a>
+                            <a class="btn ms-2" style="" asp-page="./Delete" asp-route-id="@item.foodId"><i style="color:red" class="bi bi-trash3"></i></a>
+                        </div>
+                        <a asp-page="./Details" asp-route-id="@item.foodId">
+                            <img style="width:100%;height:500px;object-fit:cover;object-position:center;max-height:300px;" src="data:image/jpeg;base64,@Convert.ToBase64String(item.Image)" class="card-img-top" alt="...">
+                        </a>
+                        
                         <div class="card-body">
-                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.FoodName)</h5>
-                            <p class="card-text">@Html.DisplayFor(modelItem => item.FoodDescription)</p>
+                            <h4 style="color:orangered;font-family:Pacifico;text-align:center;" class="card-title">@Html.DisplayFor(modelItem => item.FoodName)</h4>
+                            <p style="text-align:center;" class="card-text">@Html.DisplayFor(modelItem => item.FoodDescription)</p>
                         </div>
                     </div>
                 </div>
