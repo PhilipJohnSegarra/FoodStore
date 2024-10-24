@@ -24,3 +24,15 @@ body {
 p{
     font-family:sans-serif;
 }
+
+@media(min-width:992px){
+    .main{
+        margin:0 0 0 250px;
+        width:calc(100vw-250px);
+    }
+}
+@media(max-width:991px){
+    .main{
+        margin:100px 0 0 0;
+    }
+}
