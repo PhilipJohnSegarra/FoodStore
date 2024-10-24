@@ -38,6 +38,7 @@ namespace FoodStore.Pages.Foods
             else
             {
                 Food = food;
+                ViewData["FoodCatName"] = _context.FoodCategory.Where(id => id.FoodCatId == Food.FoodCatId).ToList().First().CategoryName;
             }
             return Page();
         }

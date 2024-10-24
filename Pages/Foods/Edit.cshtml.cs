@@ -24,7 +24,7 @@ namespace FoodStore.Pages.Foods
         public Food Food { get; set; } = default!;
 
         [BindProperty]
-        public IFormFile? imageEditFile { get; set; }
+        public byte[]? PrevImage { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -39,33 +39,38 @@ namespace FoodStore.Pages.Foods
                 return NotFound();
             }
             Food = food;
+            PrevImage = food.Image;
            ViewData["FoodCatId"] = new SelectList(_context.FoodCategory, "FoodCatId", "CategoryName");
             return Page();
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more information, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(IFormFile? imageEditFile)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
+            
 
-            if (imageEditFile != null)
-            {
-                using (MemoryStream ms = new MemoryStream())
-                {
-                    imageEditFile.CopyTo(ms);
-                    Food.Image = ms.ToArray();
-
-                    _context.Attach(Food).State = EntityState.Modified;
-                }
-            }
-     
             try
             {
-                
+                if (imageEditFile != null)
+                {
+                    // If a new file is uploaded, replace the image
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        imageEditFile.CopyTo(ms);
+                        Food.Image = ms.ToArray();
+                    }
+                }
+                else
+                {
+                    // If no new file is uploaded, retain the previous image
+                    Food.Image = PrevImage;
+                }
+                _context.Attach(Food).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)

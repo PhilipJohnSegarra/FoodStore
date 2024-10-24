@@ -5,38 +5,46 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container mt-5">
+    <div class="container-fluid d-flex flex-row justify-content-between">
+        <h1>All Food Categories</h1>
+        <p>
+            <a class="btn btn-outline-success" asp-page="Create"><i class="bi bi-plus-circle"></i>&nbsp;Create New</a>
+        </p>
+    </div>
+    
+    <hr />
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FoodCategory[0].CategoryName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FoodCategory[0].Description)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.FoodCategory)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        <a class="btn btn-outline-warning asp-page="./Edit" asp-route-id="@item.FoodCatId"><i class="bi bi-pencil-square"></i>Edit</a>
+                        <a class="btn btn-outline-info" asp-page="./Details" asp-route-id="@item.FoodCatId">Details</a>
+                        <a class="btn btn-outline-danger" asp-page="./Delete" asp-route-id="@item.FoodCatId"><i class="bi bi-trash3"></i>Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FoodCategory[0].CategoryName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FoodCategory[0].Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.FoodCategory) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.FoodCatId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.FoodCatId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.FoodCatId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
