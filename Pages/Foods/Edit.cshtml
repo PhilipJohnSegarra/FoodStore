@@ -44,8 +44,8 @@
                     <input type="number" asp-for="Food.Price" class="form-control"></input>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Save" class="btn btn-primary" />
-                    <a asp-page="./Index">Back to List</a>
+                    <input type="submit" value="Save" class="btn btn-primary col-12 mt-3" />
+                    <a class=" btn btn-outline-secondary col-12 mt-3" asp-page="./Index">Cancel</a>
                 </div>
                 <input type="hidden" asp-for="PrevImage" value="@Convert.ToBase64String(Model.PrevImage ?? new byte[0])" />
             </form>
