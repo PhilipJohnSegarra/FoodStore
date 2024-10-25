@@ -19,10 +19,14 @@ namespace FoodStore.Pages.Foods
             _context = context;
         }
 
+        [BindProperty]
+        public List<FoodCategory> Categories { get; set; }
+
         public IList<Food> Food { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
+            Categories = _context.FoodCategory.ToList();
             Food = await _context.Food
                 .Include(f => f.Category).ToListAsync();
         }

@@ -9,8 +9,8 @@
     <div class="d-flex flex-row justify-content-between align-items-center">
         <h4>Food Details</h4>
         <div>
-            <a asp-page="./Edit" asp-route-id="@Model.Food.foodId">Edit</a> |
-            <a asp-page="./Index">Back to List</a>
+            <a class="btn btn-info" asp-page="./Edit" asp-route-id="@Model.Food.foodId"><i class="bi bi-pencil-square"></i>Edit</a>
+            <a class="btn btn-outline-secondary" asp-page="./Index">Back to List</a>
         </div>
     </div>
     
